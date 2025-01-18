@@ -63,7 +63,6 @@
     "@repo/typescript-config": "workspace:*",
     "@coin98t/wallet-adapter-react": "^0.1.36",
     "@coin98t/wallet-adapter-react-ui": "^0.1.36",
-    "@wallet/utils": "^3.1.21",
     "web3": "^4.16.0"
   }
 }
