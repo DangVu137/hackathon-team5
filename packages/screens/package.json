@@ -1,0 +1,56 @@
+{
+  "name": "@repo/screens",
+  "version": "0.0.0",
+  "sideEffects": [
+    "workspace:*workspace:*/workspace:*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "./src/workspace:*": "./src/workspace:*.ts",
+    ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "scripts": {
+    "ui": "pnpm dlx shadcn@latest",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@repo/constants": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/plugin-sdk": "workspace:*",
+    "@repo/store": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@types/react": "^18.2.61",
+    "autoprefixer": "^10.4.18",
+    "next": "^14.2.20",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.5.4"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@dnd-kit/core": "^6.2.0",
+    "@coin98t/wallet-adapter-react": "^0.1.36",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.456.0",
+    "react-hook-form": "^7.53.2",
+    "sonner": "^1.7.0",
+    "@tanstack/react-query": "^5.62.7",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7",
+    "web3": "^4.16.0",
+    "zod": "^3.23.8"
+  }
+}

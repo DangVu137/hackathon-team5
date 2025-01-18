@@ -1,0 +1,25 @@
+{
+  "name": "@repo/store",
+  "description": "Storage",
+  "author": "DangVu137",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "plugins"
+  ],
+  "dependencies": {
+    "zustand": "^5.0.1",
+    "@repo/typescript-config": "workspace:*"
+  },
+  "engines": {
+    "node": ">=18.12.0",
+    "npm": ">=8.19.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "ISC"
+}

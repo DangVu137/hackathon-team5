@@ -1,0 +1,21 @@
+{
+  "name": "@repo/constants",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@test/pluga": "workspace:*",
+    "@test/plugb": "workspace:*",
+    "@test/plug_feature": "workspace:*",
+    "@test/plug_portfolio": "workspace:*",
+    "@test/pluginai_fusion": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "uuid": "^11.0.3"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

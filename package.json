@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "turbo dev",
+    "dev:web": "turbo dev --filter web",
+    "build": "turbo build",
+    "build:web": "rm -rf apps/web/.next && turbo build --filter=web...",
+    "build:packages": "turbo run build --filter=./packages/*",
+    "lint": "turbo lint",
+    "lint:report": "turbo run lint --log-prefix=none",
+    "lint:style": "stylelint 'src/**/styled.ts' 'src/**/*.tsx'",
+    "type-check": "turbo type-check",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json}\"",
+    "format:write": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.{json,html}": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@repo/eslint-config": "workspace:*",
+    "husky": "^9.1.7",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "stylelint": "^14.5.3",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "turbo": "^2.2.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "name": "with-tailwind",
+  "packageManager": "pnpm@7.16.1",
+  "dependencies": {
+    "@tanstack/react-query": "^5.62.7"
+  }
+}

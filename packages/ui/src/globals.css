@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@coin98t/wallet-adapter-react-ui/styles.css';
+
+@import './icons.css';
+
+@layer base {
+  :root {
+    --background: #fafafa;
+    --backgroundChild: #fff;
+    --backgroundInput: #f5f5f5;
+    --backgroundInputHover: #eaeaea;
+    --backgroundActive: #242424;
+    --backgroundModal: rgba(0, 0, 0, 0.6);
+    --backgroundWrapper: #f3f3f3;
+    --backgroundInputSpecial: #f5f5f5;
+    --backgroundLoading: #fafafa;
+    --textSubSwap: #303030;
+    --textContentSpecial: #969696;
+    --textTitleSpecial: #1b1b1b;
+    --textTitle: #1b1b1b;
+    --textTitleReverse: #fff;
+    --textTitleActive: #fff;
+    --textContent: #777;
+    --textButtonLight: #141414;
+    --textContentPopup: #605e5c;
+    --textSub: #bbb;
+    --textDisable: #494949;
+    --textLink: #cda439;
+    --textLinkHover: #ddb54c;
+    --textPlaceholder: #bbb;
+    --dividerColor: #f5f5f5;
+    --dividerColorBgInput: #bbb;
+    --dividerColorDefault: #ededed;
+    --primaryButton: #cda439;
+    --primaryButtonHover: #ddb54c;
+    --disableButton: #494949;
+    --error: #ce6149;
+    --warning: #ffda58;
+    --success: #77bd75;
+    --info: #4d94d7;
+    --errorHover: #d4745e;
+    --warningHover: #ffe070;
+    --successHover: #85c383;
+    --infoHover: #69a5dd;
+    --errorBackground: #f6e3df;
+    --warningBackground: #fff6d6;
+    --successBackground: #e4f2e3;
+    --infoBackground: #deebf7;
+  }
+
+  .dark {
+    --background: #141414;
+    --backgroundChild: #1a1a1a;
+    --backgroundInput: #242424;
+    --backgroundInputHover: #363636;
+    --backgroundActive: #f5f5f5;
+    --backgroundModal: hsla(0, 0%, 7%, 0.8);
+    --backgroundWrapper: #141414;
+    --backgroundInputSpecial: #1d1d1d;
+    --backgroundLoading: #181818;
+    --textSubSwap: #303030;
+    --textContentSpecial: #969696;
+    --textTitle: #fff;
+    --textTitleReverse: #1b1b1b;
+    --textTitleActive: #1b1b1b;
+    --textContent: #bbb;
+    --textContentPopup: #bbb;
+    --textButtonLight: #bbb;
+    --textSub: #777;
+    --textDisable: #494949;
+    --textLink: #cda439;
+    --textLinkHover: #ddb54c;
+    --textPlaceholder: #464646;
+    --dividerColor: #363636;
+    --dividerColorBgInput: #363636;
+    --dividerColorDefault: #212121;
+    --primaryButton: #cda439;
+    --primaryButtonHover: #ddb54c;
+    --disableButton: #494949;
+    --error: #b94f3d;
+    --warning: #debc41;
+    --success: #60a05f;
+    --info: #4a86be;
+    --errorHover: #c25a47;
+    --warningHover: #e0c152;
+    --successHover: #74ab73;
+    --infoHover: #5a91c4;
+    --errorBackground: #2e140f;
+    --warningBackground: #342b09;
+    --successBackground: #172617;
+    --infoBackground: #101f2d;
+  }
+}
+@layer components {
+  .container-miniswap {
+    @apply flex items-center border rounded-lg px-4 py-6 md:py-3  bg-backgroundInput border-transparent;
+  }
+  .all-center {
+    @apply flex justify-center items-center;
+  }
+  .icon-cursor {
+    @apply text-[24px] cursor-pointer hover:text-textLinkHover;
+  }
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+}
