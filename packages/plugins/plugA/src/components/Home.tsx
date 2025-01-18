@@ -1,6 +1,9 @@
 import React from 'react';
 import { useGetSetState } from '../hooks/useGetSetState';
-import { TOKENS } from '../constants';
+import { TOKENS, VICTION_RPC } from '../constants';
+import Web3 from 'web3';
+import { ERC20ABI } from '../abi/ERC20';
+import { convertBalanceToWei } from '@wallet/utils';
 
 const DEFAULT = {
   amount: '0',
@@ -11,6 +14,53 @@ const Pool = () => {
   const [getState, setState] = useGetSetState(DEFAULT);
 
   const { tokenSelected, isDeposit, amount } = getState();
+
+  const formatData = async () => {
+    const contractAddress = '';
+    const approveTokenSpender = '';
+    const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
+    const contract = new client.eth.Contract(ERC20ABI as any, contractAddress);
+
+    const decimal = 18;
+
+    const rawAmount = convertBalanceToWei(amount, decimal);
+    const rawData = contract.methods.approve(approveTokenSpender, rawAmount);
+    const value: any = {
+      data: rawData.encodeABI(),
+      to: contractAddress,
+      from: '',
+      value: rawAmount,
+    };
+    return value
+  };
+
+  const broadcastTransaction = async (data: string) => {
+    if (!data) return;
+    const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
+
+    const result = await new Promise((resolve, reject) => {
+      let txHash: string;
+
+      client.eth
+        .sendSignedTransaction(data as string)
+        .once('transactionHash', (hash: string) => {
+          txHash = hash;
+          resolve(hash);
+        })
+        .on('receipt', (receipt: any) => {
+          resolve(receipt.transactionHash);
+        })
+        .catch((e: any) => {
+          if (!txHash) {
+            reject(e);
+            return;
+          }
+
+          resolve(txHash);
+        });
+    });
+    console.log('result', result);
+  };
 
   const openInfoToken = (token: any) => {
     if (tokenSelected?.symbol) {
@@ -23,7 +73,7 @@ const Pool = () => {
   const onSelectAction = (isDeposit: boolean) => {
     setState({ isDeposit });
   };
-  console.log('isDeposit', isDeposit)
+  console.log('isDeposit', isDeposit);
 
   return (
     <div className="bg-gray-100 h-150vh" style={{ height: '100vh' }}>

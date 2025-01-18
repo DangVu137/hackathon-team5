@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useReducer} from 'react';
+import {useCallback, useRef, useReducer} from 'react';
 
 const updateReducer = (num: number): number => (num + 1) % 1_000_000;
 

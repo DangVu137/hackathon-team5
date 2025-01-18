@@ -15,3 +15,5 @@ export const TOKENS = [
   //   tvl: '35M',
   // },
 ];
+
+export const VICTION_RPC = 'https://rpc.tomochain.com'
