@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useReducer} from 'react';
+import { useCallback, useRef, useReducer } from 'react';
 
 const updateReducer = (num: number): number => (num + 1) % 1_000_000;
 
@@ -9,10 +9,10 @@ export function useUpdate(): () => void {
 }
 
 export const useGetSetState = <T extends object>(
-  initialState: T = {} as T,
+  initialState: T = {} as T
 ): [() => T, (patch: Partial<T>) => void] => {
   const update = useUpdate();
-  const state = useRef<T>({...(initialState as object)} as T);
+  const state = useRef<T>({ ...(initialState as object) } as T);
   const get = useCallback(() => state.current, []);
   const set = useCallback((patch: Partial<T>) => {
     if (!patch) {

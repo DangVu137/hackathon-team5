@@ -220,6 +220,12 @@ importers:
 
   packages/plugins/plugA:
     dependencies:
+      '@coin98t/wallet-adapter-react':
+        specifier: ^0.1.36
+        version: 0.1.49(@solana/wallet-adapter-base@0.9.23(@solana/web3.js@1.95.8(bufferutil@4.0.8)(utf-8-validate@5.0.10)))(@solana/web3.js@1.95.8(bufferutil@4.0.8)(utf-8-validate@5.0.10))(react@18.3.1)
+      '@coin98t/wallet-adapter-react-ui':
+        specifier: ^0.1.36
+        version: 0.1.49
       '@repo/plugin-sdk':
         specifier: workspace:*
         version: link:../../plugin-sdk
@@ -228,7 +234,7 @@ importers:
         version: link:../../config-typescript
       web3:
         specifier: ^4.16.0
-        version: 4.16.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+        version: 4.16.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
     devDependencies:
       '@size-limit/preset-small-lib':
         specifier: ^11.1.6
@@ -10004,7 +10010,7 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.2
 
-  '@jest/test-sequencer@25.5.4':
+  '@jest/test-sequencer@25.5.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)':
     dependencies:
       '@jest/test-result': 25.5.0
       graceful-fs: 4.2.11
@@ -10012,7 +10018,10 @@ snapshots:
       jest-runner: 25.5.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       jest-runtime: 25.5.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
+      - bufferutil
+      - canvas
       - supports-color
+      - utf-8-validate
 
   '@jest/transform@25.5.1':
     dependencies:
@@ -11819,7 +11828,7 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)(typescript@5.7.2)':
+  '@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)(typescript@3.9.10)':
     dependencies:
       '@typescript-eslint/experimental-utils': 2.34.0(eslint@6.8.0)(typescript@3.9.10)
       '@typescript-eslint/parser': 2.34.0(eslint@6.8.0)(typescript@3.9.10)
@@ -11828,7 +11837,7 @@ snapshots:
       regexpp: 3.2.0
       tsutils: 3.21.0(typescript@3.9.10)
     optionalDependencies:
-      typescript: 5.7.2
+      typescript: 3.9.10
     transitivePeerDependencies:
       - supports-color
 
@@ -12128,9 +12137,11 @@ snapshots:
     optionalDependencies:
       zod: 3.23.8
 
-  abitype@0.7.1(typescript@5.7.2):
+  abitype@0.7.1(typescript@5.7.2)(zod@3.23.8):
     dependencies:
       typescript: 5.7.2
+    optionalDependencies:
+      zod: 3.23.8
 
   abortcontroller-polyfill@1.7.8: {}
 
@@ -13461,15 +13472,15 @@ snapshots:
     dependencies:
       eslint: 8.57.1
 
-  eslint-config-react-app@5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)(typescript@3.9.10))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.37.2(eslint@6.8.0))(eslint@6.8.0)(typescript@3.9.10):
+  eslint-config-react-app@5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)(typescript@3.9.10))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.37.2(eslint@6.8.0))(eslint@6.8.0)(typescript@3.9.10):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)(typescript@5.7.2)
+      '@typescript-eslint/eslint-plugin': 2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)(typescript@3.9.10)
       '@typescript-eslint/parser': 2.34.0(eslint@6.8.0)(typescript@3.9.10)
       babel-eslint: 10.1.0(eslint@6.8.0)
       confusing-browser-globals: 1.0.11
       eslint: 6.8.0
       eslint-plugin-flowtype: 3.13.0(eslint@6.8.0)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@6.8.0)
       eslint-plugin-react: 7.37.2(eslint@6.8.0)
       eslint-plugin-react-hooks: 2.5.1(eslint@6.8.0)
@@ -13509,7 +13520,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint@6.8.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint-import-resolver-node@0.3.9)(eslint@6.8.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
@@ -13541,7 +13552,7 @@ snapshots:
       eslint: 6.8.0
       lodash: 4.17.21
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -13552,7 +13563,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 6.8.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint-import-resolver-node@0.3.9)(eslint@6.8.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint-import-resolver-node@0.3.9)(eslint@6.8.0)
       hasown: 2.0.2
       is-core-module: 2.15.1
       is-glob: 4.0.3
@@ -14928,7 +14939,7 @@ snapshots:
   jest-config@25.5.4(bufferutil@4.0.8)(utf-8-validate@5.0.10):
     dependencies:
       '@babel/core': 7.26.0
-      '@jest/test-sequencer': 25.5.4
+      '@jest/test-sequencer': 25.5.4(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@jest/types': 25.5.0
       babel-jest: 25.5.1(@babel/core@7.26.0)
       chalk: 3.0.0
@@ -17434,7 +17445,7 @@ snapshots:
       '@rollup/plugin-node-resolve': 9.0.0(rollup@1.32.1)
       '@rollup/plugin-replace': 2.4.2(rollup@1.32.1)
       '@types/jest': 25.2.3
-      '@typescript-eslint/eslint-plugin': 2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)(typescript@5.7.2)
+      '@typescript-eslint/eslint-plugin': 2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)(typescript@3.9.10)
       '@typescript-eslint/parser': 2.34.0(eslint@6.8.0)(typescript@3.9.10)
       ansi-escapes: 4.3.2
       asyncro: 3.0.0
@@ -17449,9 +17460,9 @@ snapshots:
       enquirer: 2.4.1
       eslint: 6.8.0
       eslint-config-prettier: 6.15.0(eslint@6.8.0)
-      eslint-config-react-app: 5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)(typescript@3.9.10))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.37.2(eslint@6.8.0))(eslint@6.8.0)(typescript@3.9.10)
+      eslint-config-react-app: 5.2.1(@typescript-eslint/eslint-plugin@2.34.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)(typescript@3.9.10))(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(babel-eslint@10.1.0(eslint@6.8.0))(eslint-plugin-flowtype@3.13.0(eslint@6.8.0))(eslint-plugin-import@2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0))(eslint-plugin-jsx-a11y@6.10.2(eslint@6.8.0))(eslint-plugin-react-hooks@2.5.1(eslint@6.8.0))(eslint-plugin-react@7.37.2(eslint@6.8.0))(eslint@6.8.0)(typescript@3.9.10)
       eslint-plugin-flowtype: 3.13.0(eslint@6.8.0)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@5.7.2))(eslint@6.8.0)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@2.34.0(eslint@6.8.0)(typescript@3.9.10))(eslint@6.8.0)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@6.8.0)
       eslint-plugin-prettier: 3.4.1(eslint-config-prettier@6.15.0(eslint@6.8.0))(eslint@6.8.0)(prettier@1.19.1)
       eslint-plugin-react: 7.37.2(eslint@6.8.0)
@@ -17862,9 +17873,9 @@ snapshots:
       - typescript
       - zod
 
-  web3-eth-abi@4.4.1(typescript@5.7.2):
+  web3-eth-abi@4.4.1(typescript@5.7.2)(zod@3.23.8):
     dependencies:
-      abitype: 0.7.1(typescript@5.7.2)
+      abitype: 0.7.1(typescript@5.7.2)(zod@3.23.8)
       web3-errors: 1.3.1
       web3-types: 1.10.0
       web3-utils: 4.3.3
@@ -17900,13 +17911,13 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth-contract@4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10):
+  web3-eth-contract@4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       '@ethereumjs/rlp': 5.0.2
       web3-core: 4.7.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-errors: 1.3.1
-      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
-      web3-eth-abi: 4.4.1(typescript@5.7.2)
+      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      web3-eth-abi: 4.4.1(typescript@5.7.2)(zod@3.23.8)
       web3-types: 1.10.0
       web3-utils: 4.3.3
       web3-validator: 2.0.6
@@ -17935,13 +17946,13 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth-ens@4.4.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10):
+  web3-eth-ens@4.4.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       '@adraffy/ens-normalize': 1.11.0
       web3-core: 4.7.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-errors: 1.3.1
-      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
-      web3-eth-contract: 4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      web3-eth-contract: 4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       web3-net: 4.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-types: 1.10.0
       web3-utils: 4.3.3
@@ -17980,10 +17991,10 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth-personal@4.1.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10):
+  web3-eth-personal@4.1.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       web3-core: 4.7.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       web3-rpc-methods: 1.3.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-types: 1.10.0
       web3-utils: 4.3.3
@@ -18015,12 +18026,12 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3-eth@4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10):
+  web3-eth@4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       setimmediate: 1.0.5
       web3-core: 4.7.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-errors: 1.3.1
-      web3-eth-abi: 4.4.1(typescript@5.7.2)
+      web3-eth-abi: 4.4.1(typescript@5.7.2)(zod@3.23.8)
       web3-eth-accounts: 4.3.1
       web3-net: 4.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-providers-ws: 4.0.8(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -18174,17 +18185,17 @@ snapshots:
       - utf-8-validate
       - zod
 
-  web3@4.16.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10):
+  web3@4.16.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8):
     dependencies:
       web3-core: 4.7.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-errors: 1.3.1
-      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
-      web3-eth-abi: 4.4.1(typescript@5.7.2)
+      web3-eth: 4.11.1(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      web3-eth-abi: 4.4.1(typescript@5.7.2)(zod@3.23.8)
       web3-eth-accounts: 4.3.1
-      web3-eth-contract: 4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
-      web3-eth-ens: 4.4.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+      web3-eth-contract: 4.7.2(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
+      web3-eth-ens: 4.4.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       web3-eth-iban: 4.0.7
-      web3-eth-personal: 4.1.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)
+      web3-eth-personal: 4.1.0(bufferutil@4.0.8)(typescript@5.7.2)(utf-8-validate@5.0.10)(zod@3.23.8)
       web3-net: 4.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       web3-providers-http: 4.2.0
       web3-providers-ws: 4.0.8(bufferutil@4.0.8)(utf-8-validate@5.0.10)

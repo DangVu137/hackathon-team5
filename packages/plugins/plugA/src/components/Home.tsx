@@ -1,6 +1,9 @@
+import { useWallet } from '@coin98t/wallet-adapter-react';
 import React from 'react';
-import { useGetSetState } from '../hooks/useGetSetState';
 import { TOKENS } from '../constants';
+import { useGetSetState } from '../hooks/useGetSetState';
+import ConnectButton from './ConnectButton';
+import Portfolio from './Portfolio';
 
 const DEFAULT = {
   amount: '0',
@@ -11,6 +14,7 @@ const Pool = () => {
   const [getState, setState] = useGetSetState(DEFAULT);
 
   const { tokenSelected, isDeposit, amount } = getState();
+  const { connected } = useWallet();
 
   const openInfoToken = (token: any) => {
     if (tokenSelected?.symbol) {
@@ -23,22 +27,29 @@ const Pool = () => {
   const onSelectAction = (isDeposit: boolean) => {
     setState({ isDeposit });
   };
-  console.log('isDeposit', isDeposit)
+  console.log('isDeposit', isDeposit);
 
   return (
     <div className="bg-gray-100 h-150vh" style={{ height: '100vh' }}>
       <h1 className="text-black text-center py-5 font-bold text-2xl">
         VIC Premier Yield Optimiser
       </h1>
-
       <h5 className="text-black text-center font-bold text-lg m-0">
         Earn Safe, Real Yields with AI Fusion
       </h5>
-
+      <div className="px-3">
+        <h5 className="text-black text-center font-bold text-lg m-0">
+          Provide liquidity & earn rewards!
+        </h5>
+        {connected ? <Portfolio /> : <ConnectButton />}
+      </div>
       <div className="p-4">
-        {TOKENS.map((token) => {
+        {TOKENS.map((token, index) => {
           return (
-            <div className="max-w-md mx-auto bg-white rounded-lg shadow-md mb-2">
+            <div
+              className="max-w-md mx-auto bg-white rounded-lg shadow-md mb-2"
+              key={index}
+            >
               <div
                 className="flex items-center justify-between p-4 border-b"
                 onClick={() => openInfoToken(token)}
@@ -113,7 +124,7 @@ const Pool = () => {
                         <p className="text-sm text-gray-600 text-wrap mb-4">
                           VIC rewards are collected multiple times daily and
                           auto-compounded back to VIC to grow your sVIC deposit
-                          and maximize your returns. Plus, you'll earn
+                          and maximize your returns. Plus, you&apos;ll earn
                           additional VIC rewards!
                         </p>
                         <p className="text-sm font-semibold text-gray-600">
@@ -128,10 +139,6 @@ const Pool = () => {
           );
         })}
       </div>
-
-      <h5 className="text-black text-center font-bold text-lg m-0">
-        Provide liquidity & earn rewards!
-      </h5>
     </div>
   );
 };
