@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useWallet } from '@coin98t/wallet-adapter-react';
 import React, { useEffect, useMemo } from 'react';
 import Web3 from 'web3';
@@ -28,8 +29,7 @@ const Pool = () => {
   const [getState, setState] = useGetSetState(DEFAULT);
   const { address = '' } = useWallet();
 
-  const { tokenSelected, tab, amount, balance, staked, isCanClaim, isLoading } =
-    getState();
+  const { tokenSelected, tab, amount, balance, staked, isLoading } = getState();
   const { connected, sendTransaction } = useWallet();
 
   const getData = async () => {
@@ -53,7 +53,25 @@ const Pool = () => {
     };
     return value;
   };
+  const getDataWithdraw = async () => {
+    const contractAddress = '0x94D55c37e5453e5281FAB6FA053c69667F10A07e';
+    const CADefusion = '0x6D2B2e6ff4D7614994a4314D492207b6342b1029';
 
+    const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
+    const contract = new client.eth.Contract(
+      ERC20Fusion as any,
+      contractAddress
+    );
+
+    const rawData = await contract.methods.withdraw(CADefusion);
+    const value: any = {
+      data: rawData.encodeABI(),
+      from: address,
+      to: contractAddress,
+      // value: rawAmount,
+    };
+    return value;
+  };
   useEffect(() => {
     fetchInfoWallet();
   }, [address]);
@@ -121,8 +139,22 @@ const Pool = () => {
     }
   };
 
-  const onWithdraw = () => {
-    console.log('withdraw');
+  const onWithdraw = async () => {
+    setState({ isLoading: true });
+    try {
+      const data = await getDataWithdraw();
+      console.log('data', data);
+      const response = await sendTransaction(data);
+      console.log('response', response);
+      toast.success(
+        typeof response.data === 'string' ? response.data : 'Withdraw success',
+        { duration: 5000 }
+      );
+    } catch (error) {
+      console.log('onWithdraw', error);
+    } finally {
+      setState({ isLoading: false });
+    }
   };
 
   const onClaiming = async () => {
@@ -262,7 +294,9 @@ const Pool = () => {
 
                               <div className="flex py-3">
                                 <button
-                                  className={`bg-blue-500 text-white font-bold py-1 px-2 rounded-full mx-auto bg-blue-600`}
+                                  className={
+                                    'bg-blue-500 text-white font-bold py-1 px-2 rounded-full mx-auto bg-blue-600'
+                                  }
                                   onClick={onClaiming}
                                 >
                                   Claim
@@ -299,7 +333,7 @@ const Pool = () => {
                                 <div className="flex py-3">
                                   <button
                                     className={`bg-blue-500 text-white font-bold py-2 px-4 rounded-full mx-auto ${isDisabled ? 'bg-gray-600' : 'bg-blue-600'}`}
-                                    disabled={isDisabled || isLoading}
+                                    // disabled={isDisabled || isLoading}
                                     onClick={tab === 0 ? onDeposit : onWithdraw}
                                   >
                                     {isLoading
