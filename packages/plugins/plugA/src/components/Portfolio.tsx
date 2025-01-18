@@ -4,10 +4,11 @@ import { truncate } from '../helper';
 
 interface PortfolioProps {
   balance: string;
+  staked: string;
 }
 
 const Portfolio = (props: PortfolioProps) => {
-  const { balance } = props;
+  const { balance, staked } = props;
   const { address = '' } = useWallet();
 
   return (
@@ -29,12 +30,14 @@ const Portfolio = (props: PortfolioProps) => {
           <p className="text-sm text-gray-500">BALANCE</p>
         </div>
         <div>
-          <p className="text-2xl font-bold text-gray-800">0.00%</p>
+          <p className="text-2xl font-bold text-gray-800">
+            {address && Number(staked) > 0 ? '30,84%' : '0%'}
+          </p>
           <p className="text-sm text-gray-500">APY</p>
         </div>
       </div>
       <div className="mb-4">
-        <p className="text-2xl font-bold text-gray-800">0 VIC</p>
+        <p className="text-2xl font-bold text-gray-800">{staked} VIC</p>
         <p className="text-sm text-gray-500">FUSIONFI STAKED</p>
       </div>
     </div>

@@ -3,7 +3,7 @@ export const TOKENS = [
     address: '',
     symbol: 'VIC',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Coin/Tomo.png',
-    apr: '8.73%',
+    apr: '30,84%', // ~ 7.94% + 27.87%
     tvl: '80M',
   },
   // {
@@ -16,4 +16,4 @@ export const TOKENS = [
   // },
 ];
 
-export const VICTION_RPC = 'https://rpc.tomochain.com'
+export const VICTION_RPC = 'https://rpc.tomochain.com';

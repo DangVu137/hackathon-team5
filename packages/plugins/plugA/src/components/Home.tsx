@@ -1,13 +1,16 @@
 // @ts-nocheck
 import { useWallet } from '@coin98t/wallet-adapter-react';
 import React, { useEffect, useMemo } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import Web3 from 'web3';
 import { ERC20Fusion } from '../abi/ERC20Fusion';
 import { TOKENS, VICTION_RPC } from '../constants';
 import { useGetSetState } from '../hooks/useGetSetState';
 import ConnectButton from './ConnectButton';
 import Portfolio from './Portfolio';
-import toast, { Toaster } from 'react-hot-toast';
+
+const FUSION_FI_CA = '0x6CF899031c0b2ee6a7CEF54F807c6200E40119fc';
+const DEFUSION_CA = '0x6D2B2e6ff4D7614994a4314D492207b6342b1029';
 
 const DEFAULT = {
   amount: '',
@@ -19,7 +22,7 @@ const DEFAULT = {
     address: '',
     symbol: 'VIC',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Coin/Tomo.png',
-    apr: '8.73%',
+    apr: '30,84%',
     tvl: '80M',
   } as any,
   tab: 0,
@@ -32,48 +35,56 @@ const Pool = () => {
   const { tokenSelected, tab, amount, balance, staked, isLoading } = getState();
   const { connected, sendTransaction } = useWallet();
 
-  const getData = async () => {
-    const contractAddress = '0x94D55c37e5453e5281FAB6FA053c69667F10A07e';
-    const CADefusion = '0x6D2B2e6ff4D7614994a4314D492207b6342b1029';
-
+  const getDataDeposit = async () => {
     const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
-    const contract = new client.eth.Contract(
-      ERC20Fusion as any,
-      contractAddress
-    );
+    const contract = new client.eth.Contract(ERC20Fusion as any, FUSION_FI_CA);
 
     const decimal = 18;
     const rawAmount = client.utils.toWei(amount, decimal);
-    const rawData = contract.methods.deposit(CADefusion);
+    const rawData = contract.methods.deposit(DEFUSION_CA);
     const value: any = {
       data: rawData.encodeABI(),
       from: address,
-      to: contractAddress,
+      to: FUSION_FI_CA,
       value: rawAmount,
     };
     return value;
   };
   const getDataWithdraw = async () => {
-    const contractAddress = '0x94D55c37e5453e5281FAB6FA053c69667F10A07e';
-    const CADefusion = '0x6D2B2e6ff4D7614994a4314D492207b6342b1029';
-
     const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
-    const contract = new client.eth.Contract(
-      ERC20Fusion as any,
-      contractAddress
-    );
+    const contract = new client.eth.Contract(ERC20Fusion as any, FUSION_FI_CA);
 
-    const rawData = await contract.methods.withdraw(CADefusion);
+    const rawData = await contract.methods.withdraw(DEFUSION_CA);
     const value: any = {
       data: rawData.encodeABI(),
       from: address,
-      to: contractAddress,
-      // value: rawAmount,
+      to: FUSION_FI_CA,
     };
     return value;
   };
+
+  const getBlockNumber = async () => {
+    const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
+    const contract = new client.eth.Contract(ERC20Fusion as any, FUSION_FI_CA);
+
+    const rawData = await contract.methods.getBlockNumber();
+    console.log('getBlockNumber rawData', rawData.encodeABI());
+  };
+
+  const getBalance = async () => {
+    // get my staked
+    const client = new Web3(new Web3.providers.HttpProvider(VICTION_RPC));
+    const contract = new client.eth.Contract(ERC20Fusion as any, FUSION_FI_CA);
+
+    const res = await contract.methods.balances(address);
+    const balanceFiat = await res.call();
+    const balance = client.utils.fromWei(balanceFiat, 'ether');
+    setState({ staked: balance });
+  };
+
   useEffect(() => {
     fetchInfoWallet();
+    getBalance();
   }, [address]);
 
   const fetchInfoWallet = async () => {
@@ -122,16 +133,18 @@ const Pool = () => {
   const onDeposit = async () => {
     setState({ isLoading: true });
     try {
-      const data = await getData();
+      const data = await getDataDeposit();
       console.log('data', data);
       const response = await sendTransaction(data);
       console.log('response', response);
       toast.success(
-        typeof response.data === 'string'
-          ? response.data
-          : 'Transaction success',
+        typeof response.data === 'string' ? response.data : 'Error',
         { duration: 5000 }
       );
+      setState({ amount: '' });
+      setTimeout(() => {
+        getBalance();
+      }, 1000);
     } catch (error) {
       console.log('onDeposit', error);
     } finally {
@@ -146,10 +159,9 @@ const Pool = () => {
       console.log('data', data);
       const response = await sendTransaction(data);
       console.log('response', response);
-      toast.success(
-        typeof response.data === 'string' ? response.data : 'Withdraw success',
-        { duration: 5000 }
-      );
+      toast(typeof response.data === 'string' ? response.data : 'Error', {
+        duration: 5000,
+      });
     } catch (error) {
       console.log('onWithdraw', error);
     } finally {
@@ -194,7 +206,7 @@ const Pool = () => {
   }, [amount, staked]);
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-gray-100 rounded-lg">
       <div className="pb-5">
         <h1 className="text-black text-center py-5 font-bold text-2xl">
           VIC Premier Yield Optimiser
@@ -205,7 +217,11 @@ const Pool = () => {
       </div>
 
       <div className="px-3">
-        {connected ? <Portfolio balance={balance} /> : <ConnectButton />}
+        {connected ? (
+          <Portfolio balance={balance} staked={staked} />
+        ) : (
+          <ConnectButton />
+        )}
       </div>
 
       <div className="p-4">
@@ -306,26 +322,30 @@ const Pool = () => {
                           </div>
                         ) : (
                           <div className="mb-4">
-                            <label className="block text-sm font-medium text-gray-700 flex">
-                              Amount
-                            </label>
-                            <div className="flex items-center mt-1">
-                              <input
-                                value={amount}
-                                type="text"
-                                placeholder="Enter amount"
-                                className="w-full p-3 border bg-white text-black rounded-l-lg focus:outline-none focus:border-none outline-none active:outline-none"
-                                onChange={(e) =>
-                                  setState({ amount: e.target.value })
-                                }
-                              />
-                              <button
-                                className="bg-blue-500 px-3 py-2 rounded-r-lg"
-                                onClick={onMax}
-                              >
-                                MAX
-                              </button>
-                            </div>
+                            {tab === 0 && (
+                              <>
+                                <label className="block text-sm font-medium text-gray-700 flex">
+                                  Amount
+                                </label>
+                                <div className="flex items-center mt-1">
+                                  <input
+                                    value={amount}
+                                    type="text"
+                                    placeholder="Enter amount"
+                                    className="w-full p-3 border bg-white text-black rounded-l-lg focus:outline-none focus:border-none outline-none active:outline-none"
+                                    onChange={(e) =>
+                                      setState({ amount: e.target.value })
+                                    }
+                                  />
+                                  <button
+                                    className="bg-blue-500 px-3 py-2 rounded-r-lg"
+                                    onClick={onMax}
+                                  >
+                                    MAX
+                                  </button>
+                                </div>
+                              </>
+                            )}
                             {!connected ? (
                               <ConnectButton />
                             ) : (
@@ -344,9 +364,11 @@ const Pool = () => {
                                   </button>
                                 </div>
 
-                                <p className="block text-sm text-black text-center font-medium mt-2">
-                                  Note: Min 10 VIC to deposit
-                                </p>
+                                {tab === 0 && (
+                                  <p className="block text-sm text-black text-center font-medium mt-2">
+                                    Note: Min 10 VIC to deposit
+                                  </p>
+                                )}
                               </div>
                             )}
                           </div>
