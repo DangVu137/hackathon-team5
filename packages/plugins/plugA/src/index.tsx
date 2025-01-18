@@ -4,6 +4,7 @@ import {
   useRegisterPlugin,
 } from '@repo/plugin-sdk';
 import React from 'react';
+import Home from './components/Home';
 
 export const PluginA = () => {
   const { do_action, add_hook } = useGlobalHook();
@@ -13,7 +14,7 @@ export const PluginA = () => {
     add_hook(
       'subtitle',
       () => {
-        return <div>Plugin contents</div>;
+        return <Home />;
       },
       'action',
       'PluginA'
@@ -25,26 +26,14 @@ export const PluginA = () => {
     author: 'Tam map',
     bootstrap,
   });
+
   return (
-    //Evering will render here.
     <div
       className="border rounded-lg p-4 border-dividerColorDefault"
       id="#PluginA"
     >
-      <p>This is plugin A</p>
       {do_action('swap')}
       {do_action('subtitle')}
-      <div>
-        <ul>
-          <li>
-            <span>Content 1</span>
-          </li>
-          <li>Content 1</li>
-          <li>Content 2</li>
-          <li>Content 3</li>
-        </ul>
-        <div>Parent!!!</div>
-      </div>
     </div>
   );
 };

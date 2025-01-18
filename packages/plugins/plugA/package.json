@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "@repo/plugin-sdk": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "web3": "^4.16.0"
   }
 }

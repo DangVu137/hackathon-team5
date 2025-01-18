@@ -13,7 +13,7 @@ export const PLUGINS: TPluginData[] = [
     url: 'https://snaps.metamask.io/snap/npm/solflare-wallet/solana-snap/',
     description: 'Coin98 Swap',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Currency/solana.png',
-    size: '4x6',
+    size: '5x8',
     plugin: PluginA,
     status: 'active',
   },
