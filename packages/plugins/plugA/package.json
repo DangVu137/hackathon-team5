@@ -59,10 +59,12 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@repo/plugin-sdk": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@coin98t/wallet-adapter-react": "^0.1.36",
     "@coin98t/wallet-adapter-react-ui": "^0.1.36",
+    "@repo/plugin-sdk": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@wallet/utils": "^3.1.21",
+    "react-hot-toast": "^2.5.1",
     "web3": "^4.16.0"
   }
 }
