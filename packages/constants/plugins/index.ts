@@ -2,16 +2,15 @@ import { PluginA } from '@test/pluga'
 import { PluginB } from '@test/plugb'
 import { PluginFeature } from '@test/plug_feature'
 import { PluginPortfolio } from '@test/plug_portfolio'
-import { PluginAI_FUNTION } from '@test/pluginai_fusion'
 
 import { TPluginData } from '../types'
 
 export const PLUGINS: TPluginData[] = [
   {
-    id: 'PluginA',
-    name: 'PluginA',
+    id: 'FusionFiPlugin',
+    name: 'FusionFi Plugin',
     url: 'https://snaps.metamask.io/snap/npm/solflare-wallet/solana-snap/',
-    description: 'Coin98 Swap',
+    description: 'FusionFi',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Currency/solana.png',
     size: '4x6',
     plugin: PluginA,
@@ -45,16 +44,6 @@ export const PLUGINS: TPluginData[] = [
     image: 'https://coin98.s3.amazonaws.com/ew00D2Rxrc031LBw',
     plugin: PluginPortfolio,
     size: '4x2',
-    status: 'active',
-  },
-  {
-    id: 'PluginAI_FUNTION',
-    name: 'PluginAI_FUNTION',
-    url: 'https://snaps.metamask.io/snap/npm/solflare-wallet/solana-snap/',
-    description: 'PluginAI_FUNTION',
-    image: 'https://coin98.s3.amazonaws.com/ew00D2Rxrc031LBw',
-    plugin: PluginAI_FUNTION,
-    size: '10x2',
     status: 'active',
   },
 ]
