@@ -9,11 +9,11 @@ import { TPluginData } from '../types'
 export const PLUGINS: TPluginData[] = [
   {
     id: 'PluginA',
-    name: 'PluginA',
+    name: 'FusionFi Plugin',
     url: 'https://snaps.metamask.io/snap/npm/solflare-wallet/solana-snap/',
-    description: 'Coin98 Swap',
+    description: 'FusionFi',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Currency/solana.png',
-    size: '5x9',
+    size: '4x6',
     plugin: PluginA,
     status: 'active',
   },

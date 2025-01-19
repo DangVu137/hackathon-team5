@@ -4,7 +4,7 @@ export const TOKENS = [
     symbol: 'VIC',
     image: 'https://coin98.s3.ap-southeast-1.amazonaws.com/Coin/Tomo.png',
     apr: '30,84%', // ~ 7.94% + 27.87%
-    tvl: '80M',
+    // tvl: '80M',
   },
   // {
   //   address: '',

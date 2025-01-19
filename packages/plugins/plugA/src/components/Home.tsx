@@ -375,7 +375,7 @@ const Pool = () => {
                         )}
                       </div>
 
-                      <div className="bg-gray-50 p-4 rounded-lg">
+                      {/* <div className="bg-gray-50 p-4 rounded-lg">
                         <h3 className="font-semibold text-black text-wrap mb-2">
                           About The Strategy
                         </h3>
@@ -388,7 +388,7 @@ const Pool = () => {
                         <p className="text-sm font-semibold text-gray-600">
                           Performance Fee: 20% of yield generated.
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
